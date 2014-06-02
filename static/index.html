@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <!--skip-->
+        <title>Videoconferencia entre navegadores</title>
+
+        <!--Jquery-->
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <!--Bootstrap-->
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+        <!--EasyRTC-->
+        <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+
+        <!--CSS and JS-->
+        <link rel="stylesheet" type="text/css" href="css/css.css" />
+        <script type="text/javascript" src="js/js.js"></script>
+
+        <!-- Prettify Code -->
+        <script type="text/javascript" src="prettify/prettify.js"></script>
+        <link rel="stylesheet" type="text/css" href="prettify/prettify.css" />
+        <script type="text/javascript" src="prettify/loadAndFilter.js"></script>
+
+        <!-- Assumes global locations for socket.io.js and easyrtc.js -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+
+    </head>
+    <body onload="styles()">
+        <!--hide-->
+        <div id="container">
+            <div id="main">
+                <div id="header">
+                    <h1>Videoconferencia</h1>
+                    <h3>Autor: Raúl Torres</h3>
+                </div>
+
+                <hr/>
+
+                <div id="connecting">
+                    <div id="cameraNotification"><h1>¡Debes permitir el uso de la cámara para continuar!</h1></div>
+                    <h2>Paso 1: Escribe tu nombre y pulsa el botón 'Conectarse' para acceder a la aplicación</h2>
+                    <label>Introduce tu nombre: </label><input type="text" id="username" onkeypress="connectEnter(event)">
+                    <button id="connectButton" onclick="connect()">Conectarse</button>
+                    <div id="connectingText"></div>
+                </div>
+
+                <div id="chooseRoom">
+                    <h2>Paso 2: Selecciona la sala a la que quieres conectarte</h2>
+                    <button id="joinGlobalRoom" onclick="joinARoom('global')">Entrar a sala Global</button>
+                    <input type="text" id="roomName" onkeypress="roomEnter(event)"><button id="joinRoom" onclick="joinARoom()">Entrar a sala: </button>
+                </div>
+
+                <hr/>
+
+                <div id="videochat">
+                    <h2>Videochat</h2>
+                    <div id="videos">
+                        <video id="myVideo" class="transit boxCommon thumbCommon easyRTCMirror" muted="muted" volume="0" ></video>
+                        <video id="othersVideo" class="transit boxCommon thumbCommon" style="visibility:hidden" controls></video>
+                        <div id="callingDiv"></div>
+                    </div>
+                </div>
+
+                <div id="chat" class="globalChat privateChat">
+                    <h2>Chat</h2>
+                    <div id="receiveMessageArea">
+                        Ventana del chat:
+                        <div id="conversation"></div>
+                    </div>
+                    <div id="sendMessageArea">
+                        <div id="me"></div>
+                        <div id="sendDiv">
+                            <input type="text" id="sendMessageText" onkeypress="sendEnter(event)"></input>
+                            <div id="roomDiv">
+                                <button id="send">Enviar</button>
+                            </div>
+                        </div>
+                        <div id="otherClients"></div>
+                        <button onclick="showRoom()">Mostrar sala</button>
+                        <button onclick="showOccupants()">Mostrar ocupantes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

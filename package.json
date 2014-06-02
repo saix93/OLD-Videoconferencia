@@ -1,0 +1,20 @@
+{
+  "name": "VideoconferenciaRaulTorres",
+  "version": "0.2.0-1",
+  "author": "Raúl Torres González",
+  "description": "Videoconferencia entre navegadores",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "easyrtc": "*",
+    "express": "*",
+    "socket.io": "*"
+  },
+  "license": "BSD2",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "subdomain": "Videoconferencia"
+}
